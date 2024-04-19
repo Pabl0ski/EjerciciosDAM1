@@ -7,13 +7,15 @@ public class Partido {
     private String EquipoVisitante;
     private int golesLocal;
     private int golesVisitante;
+    private boolean esCopa;
 
-    public Partido(String equipoLocal, String getEquipoVisitante, int golesLocal, int golesVisitante){
+    public Partido(String equipoLocal, String EquipoVisitante, int golesLocal, int golesVisitante, boolean esCopa){
         this.idPartido = ++contadorPartidos;
         this.equipoLocal=equipoLocal;
-        this.EquipoVisitante =getEquipoVisitante;
+        this.EquipoVisitante =EquipoVisitante;
         this.golesLocal=golesLocal;
         this.golesVisitante=golesVisitante;
+        this.esCopa=esCopa;
     }
 
     //Getters para acceder a los atributos de los partidos
@@ -65,5 +67,13 @@ public class Partido {
 
     public void setGolesVisitante(int golesVisitante) {
         this.golesVisitante = golesVisitante;
+    }
+
+    public boolean isEsCopa() {
+        return esCopa;
+    }
+
+    public void setEsCopa(boolean esCopa) {
+        this.esCopa = esCopa;
     }
 }
