@@ -1,4 +1,4 @@
-package ProgramacionOrientadaAObjetos.EjercicioPOOMasArray;
+package ProgramacionOrientadaAObjetos.EjercicioPOOMasArrayPartido;
 
 public class Partido {
     private static int contadorPartidos=0;
@@ -8,14 +8,16 @@ public class Partido {
     private int golesLocal;
     private int golesVisitante;
     private boolean esCopa;
+    private boolean esLiga;
 
-    public Partido(String equipoLocal, String EquipoVisitante, int golesLocal, int golesVisitante, boolean esCopa){
+    public Partido(String equipoLocal, String EquipoVisitante, int golesLocal, int golesVisitante, boolean esCopa, boolean esLiga){
         this.idPartido = ++contadorPartidos;
         this.equipoLocal=equipoLocal;
         this.EquipoVisitante =EquipoVisitante;
         this.golesLocal=golesLocal;
         this.golesVisitante=golesVisitante;
         this.esCopa=esCopa;
+        this.esLiga=esLiga;
     }
 
     //Getters para acceder a los atributos de los partidos
@@ -75,5 +77,13 @@ public class Partido {
 
     public void setEsCopa(boolean esCopa) {
         this.esCopa = esCopa;
+    }
+
+    public boolean isEsLiga() {
+        return esLiga;
+    }
+
+    public void setEsLiga(boolean esLiga) {
+        this.esLiga = esLiga;
     }
 }

@@ -1,4 +1,4 @@
-package ProgramacionOrientadaAObjetos.EjercicioPOOMasArray;
+package ProgramacionOrientadaAObjetos.EjercicioPOOMasArrayPartido;
 
 import java.util.Scanner;
 import java.util.PriorityQueue;
@@ -8,39 +8,39 @@ public class MainPartido {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Partido[] partidos= {
-                //Jornada 1
-                new Partido("Guadalcacín", "Leganés", 1, 7, false),
-                new Partido("Roldán", "Mostoles", 2, 2, false),
-                new Partido("Burela Sala", "Zaragoza", 2, 0, false),
-                new Partido("Penya Viaxes Amarelle", "Amarelle", 1, 0, false),
-                new Partido("Femisport", "Poio", 2, 2, false),
-                new Partido("Majadahonda", "Universidad De Alicante", 1, 6, false),
-                new Partido("Futsi Atletico", "UCAM Pozo Murcia", 8, 0, false),
-                new Partido("Alcorcón", "Ourense Envialia", 3, 4, false),
-                //Jornada 2
-                new Partido("La Bocatelia Futsal", "RTV Roldán", 3, 1, false),
-                new Partido("Guadalcin", "Leganés", 0, 2, false),
-                new Partido("Majadahonda", "Futsi Navalcarnero", 3, 3, false),
-                new Partido("Melilla", "Alcorcon", 4, 3, false),
-                new Partido("Poio", "Mostoles", 0, 0, false),
-                new Partido("UCAM El Pozo", "Universidad de Alicante", 1, 3, false),
-                new Partido("Ourense Envialia", "Amarelle", 0, 0, false),
-                new Partido("Femisport", "Zaragoza", 5,1, false),
+                //Jornada liga 1
+                new Partido("Guadalcacín", "Leganés", 1, 7, false, true),
+                new Partido("Roldán", "Mostoles", 2, 2, false, true),
+                new Partido("Burela Sala", "Zaragoza", 2, 0, false, true),
+                new Partido("Penya Viaxes Amarelle", "Amarelle", 1, 0, false, true),
+                new Partido("Femisport", "Poio", 2, 2, false, true),
+                new Partido("Majadahonda", "Universidad De Alicante", 1, 6, false, true),
+                new Partido("Futsi Atletico", "UCAM Pozo Murcia", 8, 0, false, true),
+                new Partido("Alcorcón", "Ourense Envialia", 3, 4, false, true),
+                //Jornada liga 2
+                new Partido("La Bocatelia Futsal", "RTV Roldán", 3, 1, false, true),
+                new Partido("Guadalcin", "Leganés", 0, 2, false, true),
+                new Partido("Majadahonda", "Futsi Navalcarnero", 3, 3, false, true),
+                new Partido("Melilla", "Alcorcon", 4, 3, false, true),
+                new Partido("Poio", "Mostoles", 0, 0, false, true),
+                new Partido("UCAM El Pozo", "Universidad de Alicante", 1, 3, false, true),
+                new Partido("Ourense Envialia", "Amarelle", 0, 0, false, true),
+                new Partido("Femisport", "Zaragoza", 5,1, false, true),
                 //Jornadas n
 
-                //Partidos de Copa
-                new Partido("RTV Roldan", "La Bocatelia Futsal", 1, 2, true)
+                //Jornada de copa 1
+                new Partido("RTV Roldan", "La Bocatelia Futsal", 1, 2, true, false)
                 //Agregar mas partidos si es necesario
         };
         int opcion;
         int jornada=1;
         do {
             System.out.println("Menú:");
-            System.out.println("1) Ver todos los partidos");
+            System.out.println("1) Ver todos los partidos de liga");
             System.out.println("2) Ver partidos empate");
             System.out.println("3) Ver 5 partidos con mayor goleada");
             System.out.println("4) Ver partidos por jornada");
-            System.out.println("5) Ver partidos de copa");
+            System.out.println("5) Ver todos los partidos de copa");
             System.out.println("6) Salir");
             System.out.print("Seleccione una opción: ");
             opcion = sc.nextInt();
@@ -58,8 +58,9 @@ public class MainPartido {
                     mostrarTop5MayorGoleada(partidos);
                     break;
                 case 4:
-                    mostrarResultadosPorJornadas(partidos, jornada);
-                    jornada++;
+                    seleccionarJornada(partidos);
+                    //mostrarResultadosPorJornadas(partidos, jornada);
+                    //jornada++;
                     break;
                 case 5:
                     identificarPartidosDeCopa(partidos);
@@ -78,11 +79,13 @@ public class MainPartido {
     // Método para mostrar los resultados de los partidos
     public static void mostrarResultadosLiga(Partido[] partidos) {
             for (Partido partido : partidos) {
-                String codigoPartido = partido.getEquipoLocal().substring(0, 1).toLowerCase() + partido.getGolesLocal() +
-                        "." + partido.getGolesVisitante() + partido.getEquipoVisitante().substring(0, 1).toUpperCase();
-                System.out.println(partido.getEquipoLocal() + " " + partido.getGolesLocal() + " - " +
-                        partido.getGolesVisitante() + " " + partido.getEquipoVisitante() + " - Código del partido: " + codigoPartido);
-                System.out.println();
+                if (partido.isEsLiga()) {
+                    String codigoPartido = partido.getEquipoLocal().substring(0, 1).toLowerCase() + partido.getGolesLocal() +
+                            "." + partido.getGolesVisitante() + partido.getEquipoVisitante().substring(0, 1).toUpperCase();
+                    System.out.println(partido.getEquipoLocal() + " " + partido.getGolesLocal() + " - " +
+                            partido.getGolesVisitante() + " " + partido.getEquipoVisitante() + " - Código del partido: " + codigoPartido);
+                    System.out.println();
+                }
             }
     }
 
@@ -154,6 +157,15 @@ public class MainPartido {
             System.out.println();
         }
     }
+
+
+    public static void seleccionarJornada(Partido[] partidos) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el número de jornada que desea ver: ");
+        int jornadaSeleccionada = sc.nextInt();
+        mostrarResultadosPorJornadas(partidos, jornadaSeleccionada);
+    }
+
     public static void identificarPartidosDeCopa(Partido[] partidos) {
         System.out.println("Partidos de Copa:");
         for (Partido partido : partidos) {
