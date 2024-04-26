@@ -24,12 +24,12 @@ public class ProgramaFiguras {
         for (IFigura2D figura:figuras){
             figura.imprimir();
         }
-
+        System.out.println();
         //4. Escala todoas las figuras con escala = 2.
         for (IFigura2D figura:figuras){
             figura.escalar(2);
         }
-
+        System.out.println();
         //5. Mestra la informacion de todas las figuras
         for (IFigura2D figura:figuras){
             figura.imprimir();
