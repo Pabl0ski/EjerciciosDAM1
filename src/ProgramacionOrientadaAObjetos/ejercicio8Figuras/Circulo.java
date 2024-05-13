@@ -10,6 +10,10 @@ public class Circulo implements IFigura2D{
         this.radio = radio;
     }
 
+    public double getRadio() {
+        return radio;
+    }
+
     @Override
     public double perimetro() {
         return 2*Math.PI*radio;
